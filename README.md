@@ -1,6 +1,6 @@
 # Automatidata-Consulting-Project-Inspecting-Preparing-NYC-Taxi-Data-for-Analysis-Using-Python
 
-## A PROJECT STILL BEING WORKED ON
+## THE PROJECT STILL BEING WORKED ON
 
 📌 Project Overview
 
