@@ -1,0 +1,59 @@
+######################################EDA####################################################
+## Importing the libraries I am going to use
+import pandas as pd
+import numpy as np
+df = pd.read_csv('2017_Yellow_Taxi_Trip_Data.csv')
+
+## Viewing and inspecting summary information about the dataframe
+df.info()
+df.describe()
+df.head(10)
+
+# Sort the data by trip distance from maximum to minimum value
+df_sorted_trip = df.sort_values(by='trip_distance', ascending = False)
+df_sorted_trip.head(20)
+
+# Sort the data by total amount and print the top 20 values
+df_sorted_amount = df.sort_values(by='total_amount',ascending = False)['total_amount']
+df_sorted_amount.head(20)
+
+# Sort the data by total amount and print the bottom 20 values
+df_sorted_amount.tail(20)
+
+# How many of each payment type are represented in the data?
+df_count =  df.groupby('payment_type').size()
+df_count 
+
+# What is the average tip for trips paid for with credit card?
+credit_card = df['payment_type'] == 1
+avg_tip = df[credit_card]['tip_amount'].mean()
+print('Avg. cc tip:',avg_tip)
+
+#==> ENTER YOUR CODE HERE
+
+# What is the average tip for trips paid for with cash?
+cash = df['payment_type'] == 2
+cash_tip = df[cash]['tip_amount'].mean()
+print('Avg. cash tip:',cash_tip)
+
+# How many times is each vendor ID represented in the data?
+df_VendorID =  df.groupby('VendorID').size()
+df_VendorID 
+
+# What is the mean total amount for each vendor?
+Mean_amount = df.groupby('VendorID')['total_amount'].mean()
+print(Mean_amount)
+
+# Filter the data for credit card payments only
+credit_card = df['payment_type'] == 1
+credit_card_payments = df[credit_card]
+
+# Filter the credit-card-only data for passenger count only
+passenger_count = credit_card_payments['passenger_count'].value_counts()
+passenger_count
+
+# Calculate the average tip amount for each passenger count (credit card payments only)
+Avg_tip_passenger = credit_card_payments.groupby('passenger_count')['tip_amount'].mean()
+Avg_tip_passenger
+
+#################################################################################################
